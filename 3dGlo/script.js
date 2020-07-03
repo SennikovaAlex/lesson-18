@@ -63,47 +63,27 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const toggleMenu = () => {
         const btnMenu = document.querySelector('.menu');
-        const menu = document.querySelector('menu'),
+        let menu = document.querySelector('menu'),
+             body =  document.querySelector('body'),
             closeBtn = document.querySelector('.close-btn'),
             menuItems = menu.querySelectorAll('ul>li');
-
-
-                
-          
                      
-            const handlerMenu = () => {
-                
-                menu.classList.toggle('active-menu'); 
-                   
+            const handlerMenu = () => {               
+                menu.classList.toggle('active-menu');                 
             }
 
-            menu.addEventListener('click', (event) => {
-                
-                let target = event.target;
-                
-                if(target.classList.contains('close-btn')) 
-                {
-                    handlerMenu(); 
-              
-                 } else if (target.tagName == 'A'){
-                     
-                    handlerMenu(); 
-                 }  
 
-               
-                
-                
+            body.addEventListener('click', (event) => {                
+                let target = event.target;  
+                if(target.closest('.menu')) {
+                    handlerMenu(); 
+                } else if (target.closest('.active-menu') && target.tagName !== 'MENU' ) {
+                    handlerMenu(); 
+                } else if (target.tagName !== 'MENU'){
+                    menu.classList.remove('active-menu')
+                };        
             });
-            
-        btnMenu.addEventListener('click', () => {
-            handlerMenu();
-            if (menu.classList.contains('active-menu')) {
-                // closeOfClickOutside();
-            };
-            
-        
-            
-        });
+
 
             
 
