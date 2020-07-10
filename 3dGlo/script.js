@@ -265,6 +265,39 @@ window.addEventListener('DOMContentLoaded', () => {
     };
     slider();
 
+    // смена картинок нашей команды
+    const changeFoto = () => {
+        const commandPhoto = document.querySelectorAll('.command__photo');
+
+        commandPhoto.forEach((item) => {
+            const srcFoto = item.src;
+            item.addEventListener('mouseenter', (e) => {
+                event.target.src = event.target.dataset.img;
+            });
+            item.addEventListener('mouseout', (e) => {  
+                event.target.src = srcFoto;
+            });
+        })
+    };
+    changeFoto();
+
+    // ограничиваем ввод в калькуляторе
+
+    const enterCalcInput = () => {
+        const inputCalc = document.querySelectorAll('.calc-item');
+
+        inputCalc.forEach((item) => {
+            item.addEventListener('input', () => {
+              item.value = item.value.replace(/\D/g, '');  
+            });
+            
+        });
+
+    };
+
+    enterCalcInput();   
+
+
 });
 
 
