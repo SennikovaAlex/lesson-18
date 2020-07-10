@@ -287,9 +287,14 @@ window.addEventListener('DOMContentLoaded', () => {
         const inputCalc = document.querySelectorAll('.calc-item');
 
         inputCalc.forEach((item) => {
-            item.addEventListener('input', () => {
-              item.value = item.value.replace(/\D/g, '');  
+            
+                item.addEventListener('input', () => {
+                    if (!item.matches('.calc-type')) {
+              item.value = item.value.replace(/\D/g, '');
+            };  
             });
+        
+            
             
         });
 
@@ -328,7 +333,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
             if (typeValue && squareValue) {
-                total = price * typeValue * squareValue * countValue * dayValue;
+                total = Math.ceil(price * typeValue * squareValue * countValue * dayValue);
             } 
             totalValue.textContent = total;
         };
